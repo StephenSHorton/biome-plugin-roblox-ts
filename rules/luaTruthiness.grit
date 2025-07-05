@@ -1,15 +1,8 @@
-# Warn about JavaScript falsy values that are truthy in Lua
-or {
-  # Direct usage of problematic values in conditions
-  `if ($value) { $_ }` where {
-    $value <: or { `0`, `""`, `''` }
-  },
-  # Negation of problematic values
-  `!$value` where {
-    $value <: or { `0`, `""`, `''`, `NaN` }
-  },
-  # Problematic values in ternary
-  `$value ? $_ : $_` where {
-    $value <: or { `0`, `""`, `''` }
-  }
+language js;
+
+`if ("")` where {
+    register_diagnostic(
+        span = $match,
+        message = "Empty string is falsy in TS. If intentional, disable this rule."
+    )
 }

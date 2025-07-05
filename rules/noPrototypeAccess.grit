@@ -1,6 +1,0 @@
-# Don't allow accessing function/class prototype
-or {
-  `$_.prototype`,
-  `$_.prototype.$_`,
-  `$_.prototype[$_]`
-}

@@ -1,0 +1,8 @@
+language js;
+
+`$expr!` where {
+    register_diagnostic(
+        span = $match,
+        message = "Non-null assertion operator (!) is not supported!"
+    )
+}

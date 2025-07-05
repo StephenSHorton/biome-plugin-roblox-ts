@@ -1,4 +1,8 @@
-grit# Don't allow block labels
-`$label: $_` where {
-  $label <: identifier()
+language js;
+
+`$label: $statement` where {
+    register_diagnostic(
+        span = $match,
+        message = "Labeled statements are not supported!"
+    )
 }

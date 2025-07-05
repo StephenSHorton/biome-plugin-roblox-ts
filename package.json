@@ -1,12 +1,37 @@
 {
-  "name": "biome-plugin-roblox-ts",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  }
+	"name": "biome-plugin-roblox-ts",
+	"version": "0.1.0",
+	"description": "Biome GritQL rules for roblox-ts projects",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"postinstall": "node scripts/postinstall.js",
+		"configure": "node scripts/postinstall.js"
+	},
+	"keywords": [
+		"biome",
+		"eslint",
+		"roblox-ts",
+		"linter",
+		"typescript"
+	],
+	"author": "StephenSHorton",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/StephenSHorton/biome-plugin-roblox-ts"
+	},
+	"files": [
+		"rules/",
+		"scripts/",
+		"biome.json",
+		"index.js",
+		"README.md"
+	],
+	"devDependencies": {
+		"@biomejs/biome": "^2.0.6"
+	},
+	"peerDependencies": {
+		"@biomejs/biome": ">=2.0.6"
+	}
 }

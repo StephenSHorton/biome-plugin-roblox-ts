@@ -1,6 +1,8 @@
-# Warn about functions that return undefined
-or {
-  `return undefined`,
-  `return;`,
-  `return void $_`
+language js;
+
+`return undefined` where {
+    register_diagnostic(
+        span = $match,
+        message = "Returning `undefined` is not supported! Use empty return instead."
+    )
 }

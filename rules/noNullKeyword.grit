@@ -1,8 +1,0 @@
-# Don't allow null (Lua doesn't have null)
-or {
-  `null`,
-  `$_ === null`,
-  `$_ == null`,
-  `$_ !== null`,
-  `$_ != null`
-}

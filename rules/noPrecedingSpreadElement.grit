@@ -1,0 +1,8 @@
+language js;
+
+`$fn(...$args, $after)` where {
+    register_diagnostic(
+        span = $match,
+        message = "Spread element must come last in a list of arguments!"
+    )
+}

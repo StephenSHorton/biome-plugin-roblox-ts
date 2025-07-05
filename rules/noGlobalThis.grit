@@ -1,9 +1,8 @@
-# Don't use 'this' outside of classes or objects
-`this` where {
-  not within or {
-    `class $_ { $_ }`,
-    `$_ = { $_: function($_) { $_ } }`,
-    `$_ = { $_($_) { $_ } }`,
-    `function $_($_) { $_ }`
-  }
+language js;
+
+`globalThis` where {
+    register_diagnostic(
+        span = $match,
+        message = "`globalThis` is not supported!"
+    )
 }

@@ -1,5 +1,8 @@
-# Don't allow == or != (use === and !== instead)
-or {
-  `$_ == $_`,
-  `$_ != $_`
+language js;
+
+`$left == $right` where {
+    register_diagnostic(
+        span = $match,
+        message = "Operator `==` is not supported! Use `===` instead."
+    )
 }

@@ -1,0 +1,8 @@
+language js;
+
+`#$name` where {
+    register_diagnostic(
+        span = $match,
+        message = "Private identifiers are not supported!"
+    )
+}

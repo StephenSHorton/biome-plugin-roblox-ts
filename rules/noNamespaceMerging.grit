@@ -1,0 +1,8 @@
+language js;
+
+`namespace $name { $body }` where {
+    register_diagnostic(
+        span = $match,
+        message = "Namespace merging is not supported!"
+    )
+}

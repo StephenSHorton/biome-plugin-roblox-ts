@@ -1,0 +1,8 @@
+language js;
+
+`$name: any` where {
+    register_diagnostic(
+        span = $match,
+        message = "Using values of type `any` is not supported! Use `unknown` instead."
+    )
+}

@@ -1,0 +1,8 @@
+language js;
+
+`if (0)` where {
+    register_diagnostic(
+        span = $match,
+        message = "Zero is falsy in TS. If intentional, disable this rule."
+    )
+}

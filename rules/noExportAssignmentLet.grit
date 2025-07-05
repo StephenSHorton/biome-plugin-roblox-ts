@@ -1,0 +1,8 @@
+language js;
+
+`export = $identifier` where {
+    register_diagnostic(
+        span = $match,
+        message = "Cannot use `export =` on a `let` variable!"
+    )
+}

@@ -1,2 +1,8 @@
-# Don't allow for-in loops (use for-of instead)
-`for ($_ in $_) { $_ }`
+language js;
+
+`for ($key in $obj) $body` where {
+    register_diagnostic(
+        span = $match,
+        message = "For-in loops are forbidden because it always types the iterator variable as `string`. Use for-of or array.forEach instead."
+    )
+}

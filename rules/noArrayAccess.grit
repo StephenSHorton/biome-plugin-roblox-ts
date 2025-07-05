@@ -1,5 +1,8 @@
-# Warn about direct array access (prefer methods)
-`$array[$index]` where {
-  $index <: not string_literal(),
-  $array <: identifier()
+language js;
+
+`$obj["$key"]` where {
+    register_diagnostic(
+        span = $match,
+        message = "Array access with string literals is not supported! Use dot notation instead."
+    )
 }

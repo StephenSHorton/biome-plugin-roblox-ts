@@ -1,0 +1,8 @@
+language js;
+
+`typeof $arg` where {
+    register_diagnostic(
+        span = $match,
+        message = "'typeof' operator is not supported! Use `typeIs(value, type)` or `typeOf(value)` instead."
+    )
+}

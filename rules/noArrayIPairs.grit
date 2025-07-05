@@ -1,0 +1,8 @@
+language js;
+
+`ipairs($arg)` where {
+    register_diagnostic(
+        span = $match,
+        message = "Do not use Array<T> with ipairs(). Key values will not be shifted from 1-indexed to 0-indexed."
+    )
+}

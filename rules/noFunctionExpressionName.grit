@@ -1,0 +1,8 @@
+language js;
+
+`function $name($args) { $body }` where {
+    register_diagnostic(
+        span = $match,
+        message = "Function expression names are not supported!"
+    )
+}

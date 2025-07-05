@@ -1,0 +1,8 @@
+language js;
+
+`const [...$rest] = $array` where {
+    register_diagnostic(
+        span = $match,
+        message = "Operator `...` is not supported for destructuring!"
+    )
+}

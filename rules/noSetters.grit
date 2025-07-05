@@ -1,0 +1,8 @@
+language js;
+
+`set $name($value) { $body }` where {
+    register_diagnostic(
+        span = $match,
+        message = "Getters and Setters are not supported for performance reasons. Please use a normal method instead."
+    )
+}

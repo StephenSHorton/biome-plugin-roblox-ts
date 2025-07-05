@@ -1,8 +1,8 @@
-# Files must have at least one import/export
-file($program) where {
-  $program <: program($body),
-  not $body <: contains or {
-    import_statement(),
-    export_statement()
-  }
+language js;
+
+`require($path)` where {
+    register_diagnostic(
+        span = $match,
+        message = "Use import statements instead of require()!"
+    )
 }

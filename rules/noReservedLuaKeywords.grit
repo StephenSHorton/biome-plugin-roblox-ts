@@ -1,4 +1,8 @@
-# Don't allow reserved Lua keywords as identifiers
-`const $id = $_` where {
-  $id <: or { `and`, `end`, `nil`, `not`, `or`, `repeat`, `until` }
+language js;
+
+`and` where {
+    register_diagnostic(
+        span = $match,
+        message = "Reserved Lua keyword 'and' cannot be used as identifier!"
+    )
 }

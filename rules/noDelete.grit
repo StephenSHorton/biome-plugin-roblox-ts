@@ -1,5 +1,8 @@
-# Don't allow delete operator
-or {
-  `delete $_.$_`,
-  `delete $_[$_]`
+language js;
+
+`delete $arg` where {
+    register_diagnostic(
+        span = $match,
+        message = "delete expressions are not supported!"
+    )
 }
