@@ -1,0 +1,4 @@
+grit# Don't allow block labels
+`$label: $_` where {
+  $label <: identifier()
+}

@@ -1,0 +1,8 @@
+# Files must have at least one import/export
+file($program) where {
+  $program <: program($body),
+  not $body <: contains or {
+    import_statement(),
+    export_statement()
+  }
+}

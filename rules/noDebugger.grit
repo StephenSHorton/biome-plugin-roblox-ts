@@ -1,0 +1,2 @@
+# Don't allow debugger statements
+debugger

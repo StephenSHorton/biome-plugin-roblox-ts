@@ -1,0 +1,2 @@
+# Don't allow for-in loops (use for-of instead)
+`for ($_ in $_) { $_ }`

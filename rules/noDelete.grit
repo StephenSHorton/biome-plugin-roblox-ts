@@ -1,0 +1,5 @@
+# Don't allow delete operator
+or {
+  `delete $_.$_`,
+  `delete $_[$_]`
+}

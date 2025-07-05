@@ -1,0 +1,5 @@
+# Don't allow == or != (use === and !== instead)
+or {
+  `$_ == $_`,
+  `$_ != $_`
+}

@@ -1,0 +1,9 @@
+# Don't allow regular expressions (Lua doesn't support them)
+or {
+  regex_pattern(),
+  `new RegExp($_)`,
+  `$_.match($_)`,
+  `$_.replace(regex_pattern(), $_)`,
+  `$_.search($_)`,
+  `$_.split(regex_pattern())`
+}

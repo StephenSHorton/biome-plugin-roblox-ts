@@ -1,0 +1,6 @@
+# Prefer task.wait() over wait(), etc.
+or {
+  `wait($_)`,
+  `delay($_)`,
+  `spawn($_)`
+}

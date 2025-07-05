@@ -1,0 +1,5 @@
+# Warn about direct array access (prefer methods)
+`$array[$index]` where {
+  $index <: not string_literal(),
+  $array <: identifier()
+}

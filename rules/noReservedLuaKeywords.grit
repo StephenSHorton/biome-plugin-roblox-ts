@@ -1,0 +1,4 @@
+# Don't allow reserved Lua keywords as identifiers
+`const $id = $_` where {
+  $id <: or { `and`, `end`, `nil`, `not`, `or`, `repeat`, `until` }
+}

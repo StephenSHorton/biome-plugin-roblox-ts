@@ -1,0 +1,6 @@
+# Warn about functions that return undefined
+or {
+  `return undefined`,
+  `return;`,
+  `return void $_`
+}
