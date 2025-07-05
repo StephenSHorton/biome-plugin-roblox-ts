@@ -22,6 +22,9 @@
 		"src/biome.json",
 		"README.md"
 	],
+	"exports": {
+		"./biome": "./src/biome.json"
+	},
 	"scripts": {
 		"postinstall": "node src/scripts/postinstall.js"
 	},

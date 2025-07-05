@@ -47,32 +47,16 @@ function getBiomeConfigPath(projectRoot) {
 	return resolve(projectRoot, "biome.json");
 }
 
-function getPluginPaths() {
-	// Get the path to this package's biome.json
-	const packageRoot = resolve(__dirname, "..");
-	const pluginBiomeConfig = resolve(packageRoot, "biome.json");
-
-	if (!existsSync(pluginBiomeConfig)) {
-		throw new Error("Plugin biome.json not found");
-	}
-
-	const pluginConfig = JSON.parse(readFileSync(pluginBiomeConfig, "utf8"));
-	const pluginPaths = pluginConfig.plugins || [];
-
-	// Convert relative paths to paths relative to node_modules
-	return pluginPaths.map((path) => {
-		if (path.startsWith("./rules/")) {
-			return `./node_modules/biome-plugin-roblox-ts/rules/${path.substring(8)}`;
-		}
-		return path;
-	});
+function getExtendPath() {
+	// Return the extends path for this package
+	return "biome-plugin-roblox-ts/biome";
 }
 
 function updateBiomeConfig() {
 	try {
 		const projectRoot = findProjectRoot();
 		const biomeConfigPath = getBiomeConfigPath(projectRoot);
-		const pluginPaths = getPluginPaths();
+		const extendPath = getExtendPath();
 
 		log(`Project root: ${projectRoot}`);
 		log(`Biome config: ${biomeConfigPath}`);
@@ -93,18 +77,16 @@ function updateBiomeConfig() {
 			log("No existing biome.json found, creating new one...");
 		}
 
-		// Ensure plugins array exists
-		if (!config.plugins) {
-			config.plugins = [];
+		// Ensure extends array exists
+		if (!config.extends) {
+			config.extends = [];
 		}
 
-		// Add our plugin paths, avoiding duplicates
-		let addedCount = 0;
-		for (const pluginPath of pluginPaths) {
-			if (!config.plugins.includes(pluginPath)) {
-				config.plugins.push(pluginPath);
-				addedCount++;
-			}
+		// Add our extend path, avoiding duplicates
+		let wasAdded = false;
+		if (!config.extends.includes(extendPath)) {
+			config.extends.push(extendPath);
+			wasAdded = true;
 		}
 
 		// Ensure proper schema
@@ -115,19 +97,19 @@ function updateBiomeConfig() {
 		// Write updated config
 		writeFileSync(biomeConfigPath, JSON.stringify(config, null, "\t") + "\n");
 
-		if (addedCount > 0) {
+		if (wasAdded) {
 			log(
-				` Successfully added ${addedCount} roblox-ts rules to your biome.json`,
+				`✅ Successfully added biome-plugin-roblox-ts to your biome.json extends`,
 			);
-			log(`=� Configuration file: ${biomeConfigPath}`);
-			log("=� Your project now includes roblox-ts specific linting rules!");
+			log(`📁 Configuration file: ${biomeConfigPath}`);
+			log("🎉 Your project now includes roblox-ts specific linting rules!");
 		} else {
-			log("9  roblox-ts rules already configured in your biome.json");
+			log("✅ biome-plugin-roblox-ts already configured in your biome.json");
 		}
 	} catch (error) {
-		log(`L Error configuring biome.json: ${error.message}`);
-		log("=� You can manually add the plugin rules to your biome.json:");
-		log('   Add the plugin paths to the "plugins" array in your biome.json');
+		log(`❌ Error configuring biome.json: ${error.message}`);
+		log("💡 You can manually add the extends to your biome.json:");
+		log('   Add "biome-plugin-roblox-ts/biome" to the "extends" array in your biome.json');
 		process.exit(1);
 	}
 }
@@ -138,8 +120,8 @@ function main() {
 	// Check if we're in a valid project
 	const projectRoot = findProjectRoot();
 	if (!existsSync(resolve(projectRoot, "package.json"))) {
-		log("�  No package.json found. Skipping automatic configuration.");
-		log("=� Run this script from your project root to configure biome.json");
+		log("⚠️  No package.json found. Skipping automatic configuration.");
+		log("💡 Run this script from your project root to configure biome.json");
 		return;
 	}
 
