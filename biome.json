@@ -30,8 +30,5 @@
 				"organizeImports": "on"
 			}
 		}
-	},
-	"extends": [
-		"biome-plugin-roblox-ts/biome"
-	]
+	}
 }

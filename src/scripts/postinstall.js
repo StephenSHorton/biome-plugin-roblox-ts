@@ -116,9 +116,13 @@ function updateBiomeConfig() {
 
 function main() {
 	log("Setting up biome-plugin-roblox-ts...");
+	log(`Working directory: ${process.cwd()}`);
+	log(`Script location: ${__dirname}`);
 
 	// Check if we're in a valid project
 	const projectRoot = findProjectRoot();
+	log(`Found project root: ${projectRoot}`);
+	
 	if (!existsSync(resolve(projectRoot, "package.json"))) {
 		log("⚠️  No package.json found. Skipping automatic configuration.");
 		log("💡 Run this script from your project root to configure biome.json");
