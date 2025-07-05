@@ -1,8 +1,0 @@
-language js;
-
-`delete $arg` where {
-    register_diagnostic(
-        span = $match,
-        message = "delete expressions are not supported!"
-    )
-}

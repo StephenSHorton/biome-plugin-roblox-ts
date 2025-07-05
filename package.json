@@ -2,16 +2,7 @@
 	"name": "biome-plugin-roblox-ts",
 	"version": "0.1.0",
 	"description": "Biome GritQL rules for roblox-ts projects",
-	"main": "index.js",
 	"type": "module",
-	"scripts": {
-		"postinstall": "node scripts/postinstall.js",
-		"configure": "node scripts/postinstall.js",
-		"build": "echo 'No build step required'",
-		"prepublishOnly": "bun run build",
-		"publish:npm": "bun publish",
-		"publish:dry": "bun publish --dry-run"
-	},
 	"keywords": [
 		"biome",
 		"eslint",
@@ -26,12 +17,17 @@
 		"url": "https://github.com/StephenSHorton/biome-plugin-roblox-ts"
 	},
 	"files": [
-		"rules/",
-		"scripts/",
-		"biome.json",
-		"index.js",
+		"src/rules/",
+		"src/scripts/",
+		"src/biome.json",
 		"README.md"
 	],
+	"exports": {
+		"./biome": "./src/biome.json"
+	},
+	"scripts": {
+		"postinstall": "node src/scripts/postinstall.js"
+	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.0.6"
 	},
