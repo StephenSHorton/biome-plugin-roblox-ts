@@ -2,7 +2,7 @@
 
 # biome-plugin-roblox-ts
 
-A comprehensive Biome plugin providing **38 GritQL linting rules** specifically designed for [roblox-ts](https://roblox-ts.com/) development.
+A port of the [eslint-plugin-roblox-ts](https://github.com/roblox-ts/eslint-plugin-roblox-ts) ruleset to Biome. Designed for [roblox-ts](https://roblox-ts.com/) development.
 
 This plugin enforces TypeScript restrictions, Lua compatibility patterns, and Roblox-specific best practices to help you write better roblox-ts code.
 
@@ -15,35 +15,58 @@ This plugin enforces TypeScript restrictions, Lua compatibility patterns, and Ro
 
 ## 📦 Installation
 
+### 1. Install Biome and the Plugin
+
 ```bash
 # npm
-npm install --save-dev biome-plugin-roblox-ts
+npm install --save-dev @biomejs/biome biome-plugin-roblox-ts
 
 # bun
-bun add -D biome-plugin-roblox-ts
+bun add -D @biomejs/biome biome-plugin-roblox-ts
 
 # yarn
-yarn add -D biome-plugin-roblox-ts
+yarn add -D @biomejs/biome biome-plugin-roblox-ts
 ```
 
-The postinstall script will automatically configure your `biome.json` file. If you need to run it manually:
+### 2. Initialize Biome (if not already done)
 
 ```bash
-npm run configure
+npx @biomejs/biome init
 ```
+
+### 3. Install Biome VS Code Extension
+
+Install the [Biome VS Code extension](https://marketplace.visualstudio.com/items?itemName=biomejs.biome) for IDE integration:
+
+- Open VS Code
+- Go to Extensions (Ctrl+Shift+X / Cmd+Shift+X)
+- Search for "Biome"
+- Install the official Biome extension by the Biome team
 
 ## 🎛️ Configuration
 
-After installation, your `biome.json` will be automatically updated to include all roblox-ts rules:
+After installation, add the plugin to your `biome.json` configuration:
 
 ```json
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
-  "plugins": [
-    "./node_modules/biome-plugin-roblox-ts/rules/noGlobalThis.grit",
-    "./node_modules/biome-plugin-roblox-ts/rules/noNull.grit",
-    // ... 40+ more rules
-  ]
+  "extends": ["biome-plugin-roblox-ts/biome"],
+}
+```
+
+### Customizing Rules
+
+You can disable specific rules or change their severity by overriding them in your `biome.json`:
+
+```json
+{
+  "linter": {
+    "rules": {
+      "nursery": {
+        "noNull": "off",
+        "noAnyType": "warn"
+      }
+    }
+  }
 }
 ```
 
@@ -104,34 +127,6 @@ These rules are provided by Biome itself and are enabled as warnings in the plug
 - `noFunctionExpressionName` - Bans named function expressions
 - `noExportAssignmentLet` - Bans export = syntax
 - `noPrecedingSpreadElement` - Enforces spread comes last in arguments
-
-## 🔧 Manual Configuration
-
-If the automatic setup doesn't work, you can manually add the plugin rules to your `biome.json`:
-
-```json
-{
-  "$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
-  "plugins": [
-    "./node_modules/biome-plugin-roblox-ts/rules/noGlobalThis.grit"
-  ]
-}
-```
-
-Or run the configuration script manually:
-
-```bash
-npx biome-plugin-roblox-ts configure
-```
-
-## 🚀 Usage
-
-Once configured, Biome will automatically apply these rules when you run:
-
-```bash
-npx biome check .
-npx biome lint .
-```
 
 ## 🤝 Contributing
 

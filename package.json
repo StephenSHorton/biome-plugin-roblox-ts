@@ -21,14 +21,5 @@
 	],
 	"exports": {
 		"./biome": "./src/biome.json"
-	},
-	"scripts": {
-		"postinstall": "node src/scripts/postinstall.js"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^2.0.6"
-	},
-	"peerDependencies": {
-		"@biomejs/biome": ">=2.0.6"
 	}
 }
