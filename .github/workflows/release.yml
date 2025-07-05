@@ -32,6 +32,14 @@ jobs:
           # Update package.json version to match the tag
           npm pkg set version=${{ steps.version.outputs.version }}
 
+      - name: Commit version change
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add package.json
+          git commit -m "chore: update version to ${{ steps.version.outputs.version }}"
+          git push
+
       - name: Publish to npm
         run: npm publish
         env:
