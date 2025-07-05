@@ -1,6 +1,6 @@
 {
 	"name": "biome-plugin-roblox-ts",
-	"version": "0.1.0",
+	"version": "0.1.5",
 	"description": "Biome GritQL rules for roblox-ts projects",
 	"type": "module",
 	"keywords": [
