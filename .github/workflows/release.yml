@@ -28,7 +28,9 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Update package.json version
-        run: npm version ${{ steps.version.outputs.version }} --no-git-tag-version
+        run: |
+          # Update package.json version to match the tag
+          npm pkg set version=${{ steps.version.outputs.version }}
 
       - name: Publish to npm
         run: npm publish
