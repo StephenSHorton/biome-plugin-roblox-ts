@@ -1,7 +1,8 @@
 name: Release
 on:
   push:
-    branches: [main]
+    tags:
+      - 'v*'
 
 jobs:
   release:
@@ -19,20 +20,15 @@ jobs:
 
       - run: npm ci
 
-      - name: Determine version bump
+      - name: Extract version from tag
         id: version
         run: |
-          # Logic to determine if patch/minor/major based on commit messages
-          # or use a tool like semantic-release
-          echo "bump=patch" >> $GITHUB_OUTPUT
+          # Remove 'v' prefix from tag (e.g., v1.2.3 -> 1.2.3)
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Bump version
-        run: npm version ${{ steps.version.outputs.bump }}
-
-      - name: Push changes
-        run: |
-          git push origin main
-          git push origin --tags
+      - name: Update package.json version
+        run: npm version ${{ steps.version.outputs.version }} --no-git-tag-version
 
       - name: Publish to npm
         run: npm publish
