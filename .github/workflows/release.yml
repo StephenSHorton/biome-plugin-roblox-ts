@@ -12,12 +12,11 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v2
         with:
-          node-version: '18'
-          registry-url: 'https://registry.npmjs.org'
+          bun-version: latest
 
-      - run: npm ci
+      - run: bun install --frozen-lockfile
 
       - name: Determine version bump
         id: version
@@ -27,7 +26,7 @@ jobs:
           echo "bump=patch" >> $GITHUB_OUTPUT
 
       - name: Bump version
-        run: npm version ${{ steps.version.outputs.bump }}
+        run: bun version ${{ steps.version.outputs.bump }}
 
       - name: Push changes
         run: |
@@ -35,6 +34,6 @@ jobs:
           git push origin --tags
 
       - name: Publish to npm
-        run: npm publish
+        run: bun publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

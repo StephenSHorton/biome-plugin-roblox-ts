@@ -1,8 +1,0 @@
-language js;
-
-`debugger` where {
-    register_diagnostic(
-        span = $match,
-        message = "Debugger statements are not supported!"
-    )
-}

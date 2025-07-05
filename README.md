@@ -2,15 +2,13 @@
 
 # biome-plugin-roblox-ts
 
-A comprehensive Biome plugin providing **42 GritQL linting rules** specifically designed for [roblox-ts](https://roblox-ts.com/) development.
+A comprehensive Biome plugin providing **38 GritQL linting rules** specifically designed for [roblox-ts](https://roblox-ts.com/) development.
 
 This plugin enforces TypeScript restrictions, Lua compatibility patterns, and Roblox-specific best practices to help you write better roblox-ts code.
 
 ## ✨ Features
 
-- 🚀 **43+ Custom Rules** - Comprehensive coverage of roblox-ts specific patterns
 - ⚡ **Automatic Setup** - Postinstall script automatically configures your `biome.json`
-- 🔧 **Zero Configuration** - Works out of the box with sensible defaults
 - 🎯 **TypeScript Focused** - Enforces roblox-ts TypeScript restrictions
 - 🌙 **Lua Compatible** - Prevents patterns that don't translate well to Lua
 - 🎮 **Roblox Specific** - Rules tailored for the Roblox platform
@@ -51,27 +49,30 @@ After installation, your `biome.json` will be automatically updated to include a
 
 ## 📋 Rules Overview
 
-### Core Language Features (11 rules)
-- `noGlobalThis` - Bans globalThis usage
-- `noNull` - Bans null usage (use undefined instead)
+### Built-in Biome Rules (4 rules)
+These rules are provided by Biome itself and are enabled as warnings in the plugin configuration:
 - `noDebugger` - Bans debugger statements
 - `noDelete` - Bans delete operator
+- `noNonNullAssertion` - Bans ! assertion operator
+- `noWithStatement` - Bans with statements
+
+### Core Language Features (7 rules)
+- `noGlobalThis` - Bans globalThis usage
+- `noNull` - Bans null usage (use undefined instead)
 - `noVoidExpression` - Bans void expressions
 - `noValueTypeOf` - Bans typeof operator
 - `noPrototype` - Bans .prototype access
-- `noWithStatement` - Bans with statements
 - `noLabels` - Bans labeled statements
 - `noForIn` - Bans for-in loops (use for-of instead)
 - `noRegex` - Bans regex literals
 
-### Operators & Expressions (7 rules)
+### Operators & Expressions (6 rules)
 - `noEqualityOperators` - Bans == operator (use === instead)
 - `noInequalityOperators` - Bans != operator (use !== instead)
 - `noObjectMath` - Bans + operator on Roblox data types
 - `noMathSub` - Bans - operator (use .sub() method)
 - `noMathMul` - Bans * operator (use .mul() method)
 - `noMathDiv` - Bans / operator (use .div() method)
-- `noNonNullAssertion` - Bans ! assertion operator
 
 ### TypeScript Features (6 rules)
 - `noAnyType` - Bans any type (use unknown instead)

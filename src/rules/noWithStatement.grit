@@ -1,8 +1,0 @@
-language js;
-
-`with ($obj) $body` where {
-    register_diagnostic(
-        span = $match,
-        message = "With statements are not supported!"
-    )
-}

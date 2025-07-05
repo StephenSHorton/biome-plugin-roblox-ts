@@ -1,5 +1,19 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
+	"linter": {
+		"rules": {
+			"performance": {
+				"noDelete": "warn"
+			},
+			"style": {
+				"noNonNullAssertion": "warn"
+			},
+			"suspicious": {
+				"noDebugger": "warn",
+				"noWith": "warn"
+			}
+		}
+	},
 	"plugins": [
 		"./rules/luaTruthiness.grit",
 		"./rules/luaTruthinessNaN.grit",
@@ -8,8 +22,6 @@
 		"./rules/noArrayAccess.grit",
 		"./rules/noArrayIPairs.grit",
 		"./rules/noArrayPairs.grit",
-		"./rules/noDebugger.grit",
-		"./rules/noDelete.grit",
 		"./rules/noEnumMerging.grit",
 		"./rules/noEqualityOperators.grit",
 		"./rules/noExportAssignmentLet.grit",
@@ -26,7 +38,6 @@
 		"./rules/noMathMul.grit",
 		"./rules/noMathSub.grit",
 		"./rules/noNamespaceMerging.grit",
-		"./rules/noNonNullAssertion.grit",
 		"./rules/noNull.grit",
 		"./rules/noObjectMath.grit",
 		"./rules/noPrecedingSpreadElement.grit",
@@ -40,7 +51,6 @@
 		"./rules/noUndefinedReturn.grit",
 		"./rules/noValueTypeOf.grit",
 		"./rules/noVoidExpression.grit",
-		"./rules/noWithStatement.grit",
 		"./rules/preferTaskLibrary.grit",
 		"./rules/requireModule.grit"
 	]
