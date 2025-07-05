@@ -6,7 +6,11 @@
 	"type": "module",
 	"scripts": {
 		"postinstall": "node scripts/postinstall.js",
-		"configure": "node scripts/postinstall.js"
+		"configure": "node scripts/postinstall.js",
+		"build": "echo 'No build step required'",
+		"prepublishOnly": "bun run build",
+		"publish:npm": "bun publish",
+		"publish:dry": "bun publish --dry-run"
 	},
 	"keywords": [
 		"biome",
