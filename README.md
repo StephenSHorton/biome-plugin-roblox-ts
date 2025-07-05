@@ -2,7 +2,7 @@
 
 # biome-plugin-roblox-ts
 
-A comprehensive Biome plugin providing **43+ GritQL linting rules** specifically designed for [roblox-ts](https://roblox-ts.com/) development.
+A comprehensive Biome plugin providing **42 GritQL linting rules** specifically designed for [roblox-ts](https://roblox-ts.com/) development.
 
 This plugin enforces TypeScript restrictions, Lua compatibility patterns, and Roblox-specific best practices to help you write better roblox-ts code.
 
