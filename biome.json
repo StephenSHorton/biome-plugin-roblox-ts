@@ -1,0 +1,57 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
+	"linter": {
+		"rules": {
+			"performance": {
+				"noDelete": "warn"
+			},
+			"style": {
+				"noNonNullAssertion": "warn"
+			},
+			"suspicious": {
+				"noDebugger": "warn",
+				"noWith": "warn"
+			}
+		}
+	},
+	"plugins": [
+		"./src/rules/luaTruthiness.grit",
+		"./src/rules/luaTruthinessNaN.grit",
+		"./src/rules/luaTruthinessZero.grit",
+		"./src/rules/noAnyType.grit",
+		"./src/rules/noArrayAccess.grit",
+		"./src/rules/noArrayIPairs.grit",
+		"./src/rules/noArrayPairs.grit",
+		"./src/rules/noEnumMerging.grit",
+		"./src/rules/noEqualityOperators.grit",
+		"./src/rules/noExportAssignmentLet.grit",
+		"./src/rules/noForIn.grit",
+		"./src/rules/noFunctionExpressionName.grit",
+		"./src/rules/noGettersOrSetters.grit",
+		"./src/rules/noGlobalThis.grit",
+		"./src/rules/noInequalityOperators.grit",
+		"./src/rules/noLabels.grit",
+		"./src/rules/noLuaKeywordEnd.grit",
+		"./src/rules/noLuaKeywordLocal.grit",
+		"./src/rules/noLuaKeywordNil.grit",
+		"./src/rules/noMathDiv.grit",
+		"./src/rules/noMathMul.grit",
+		"./src/rules/noMathSub.grit",
+		"./src/rules/noNamespaceMerging.grit",
+		"./src/rules/noNull.grit",
+		"./src/rules/noObjectMath.grit",
+		"./src/rules/noPrecedingSpreadElement.grit",
+		"./src/rules/noPrivateIdentifier.grit",
+		"./src/rules/noPrototype.grit",
+		"./src/rules/noRbxPostFixNew.grit",
+		"./src/rules/noRegex.grit",
+		"./src/rules/noReservedLuaKeywords.grit",
+		"./src/rules/noSetters.grit",
+		"./src/rules/noSpreadingTuples.grit",
+		"./src/rules/noUndefinedReturn.grit",
+		"./src/rules/noValueTypeOf.grit",
+		"./src/rules/noVoidExpression.grit",
+		"./src/rules/preferTaskLibrary.grit",
+		"./src/rules/requireModule.grit"
+	]
+}
