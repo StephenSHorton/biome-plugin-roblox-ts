@@ -1,0 +1,20 @@
+language js;
+
+// This rule would require type checking to detect LuaTuple types
+// Since GritQL doesn't have access to TypeScript's type checker,
+// we cannot fully implement this rule's logic
+// The ESLint version uses the TypeScript compiler API to detect LuaTuple types
+
+// For now, we'll provide a basic pattern that catches common cases
+// but won't be as comprehensive as the TypeScript-aware ESLint rule
+
+// This is a simplified version that cannot detect TypeScript types
+// A full implementation would need TypeScript type information
+`if ($expr)` where {
+    // This is a placeholder - we cannot detect LuaTuple types without TypeScript
+    // The rule is included for completeness but won't be functional
+    false
+}
+
+// Note: This rule requires TypeScript type checking which GritQL cannot provide
+// Consider using the ESLint version for full functionality

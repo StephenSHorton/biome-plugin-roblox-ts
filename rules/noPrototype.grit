@@ -3,6 +3,6 @@ language js;
 `$obj.prototype` where {
     register_diagnostic(
         span = $match,
-        message = "Prototype access is not supported!"
+        message = "`prototype` is not supported!"
     )
 }

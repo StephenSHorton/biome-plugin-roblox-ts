@@ -3,6 +3,6 @@ language js;
 `null` where {
     register_diagnostic(
         span = $match,
-        message = "Using `null` is not supported! Use `undefined` instead."
+        message = "Do not use null. Use undefined instead"
     )
 }
