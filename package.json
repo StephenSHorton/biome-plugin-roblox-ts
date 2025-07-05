@@ -17,9 +17,10 @@
 		"url": "https://github.com/StephenSHorton/biome-plugin-roblox-ts"
 	},
 	"files": [
-		"src/"
+		"rules/",
+		"biome.json"
 	],
 	"exports": {
-		"./biome": "./src/biome.json"
+		"./biome": "./biome.json"
 	}
 }
