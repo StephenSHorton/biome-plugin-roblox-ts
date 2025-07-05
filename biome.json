@@ -1,19 +1,5 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
-	"linter": {
-		"rules": {
-			"performance": {
-				"noDelete": "warn"
-			},
-			"style": {
-				"noNonNullAssertion": "warn"
-			},
-			"suspicious": {
-				"noDebugger": "warn",
-				"noWith": "warn"
-			}
-		}
-	},
 	"plugins": [
 		"./rules/luaTruthiness.grit",
 		"./rules/luaTruthinessNaN.grit",
