@@ -12,8 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -32,11 +32,9 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git checkout main
           npm pkg set version=${{ steps.version.outputs.version }}
           git add package.json
-          git commit -m "chore: update version to ${{ steps.version.outputs.version }}"
-          git push origin main
+          git diff --cached --quiet && echo "Version already up to date" || (git commit -m "chore: update version to ${{ steps.version.outputs.version }}" && git push origin main)
 
       - name: Publish to npm
         run: npm publish
