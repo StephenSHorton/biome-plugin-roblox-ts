@@ -1,0 +1,11 @@
+language js;
+
+// Prefer Players.GetPlayers() over Players.GetChildren() for more accurate types.
+// Name-based check (matches any object named "Players" calling GetChildren).
+
+`Players.GetChildren($args)` where {
+    register_diagnostic(
+        span = $match,
+        message = "Use Players.GetPlayers() instead of Players.GetChildren() for more accurate types."
+    )
+}

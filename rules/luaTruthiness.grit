@@ -1,8 +1,11 @@
 language js;
 
-`if ("")` where {
+// Workaround: code patterns like `if ("")` don't fire in plugins,
+// but the if_statement() node type does.
+if_statement($condition, $consequence) where {
+    $condition <: `""`,
     register_diagnostic(
-        span = $match,
+        span = $condition,
         message = "Empty string is falsy in TS. If intentional, disable this rule."
     )
 }

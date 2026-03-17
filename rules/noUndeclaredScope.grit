@@ -1,0 +1,14 @@
+language js;
+
+// This rule requires TypeScript type checking to fully implement.
+// The ESLint version validates that scoped npm packages (@scope/package)
+// are declared in tsconfig typeRoots, and that the resolved directories exist.
+// GritQL cannot access tsconfig or perform file system checks.
+
+// Placeholder: this rule cannot be implemented without TypeScript compiler API.
+`import $_ from $source` where {
+    false
+}
+
+// Note: This rule requires TypeScript type checking which GritQL cannot provide.
+// Consider using the ESLint version for full functionality.

@@ -1,8 +1,0 @@
-language js;
-
-`void $arg` where {
-    register_diagnostic(
-        span = $match,
-        message = "void expressions are not supported!"
-    )
-}

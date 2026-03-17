@@ -1,0 +1,23 @@
+language js;
+
+// Comprehensive check for Luau reserved keywords used as identifiers.
+// These are all Luau reserved words that are valid JavaScript identifiers
+// (JS reserved words like `break`, `for`, `if`, etc. are already caught by the parser).
+
+or {
+    `and`,
+    `elseif`,
+    `end`,
+    `local`,
+    `nil`,
+    `not`,
+    `or`,
+    `repeat`,
+    `then`,
+    `until`
+} where {
+    register_diagnostic(
+        span = $match,
+        message = "Avoid using this identifier, as it is a reserved keyword in Luau."
+    )
+}

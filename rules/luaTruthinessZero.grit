@@ -1,8 +1,9 @@
 language js;
 
-`if (0)` where {
+if_statement($condition, $consequence) where {
+    $condition <: `0`,
     register_diagnostic(
-        span = $match,
+        span = $condition,
         message = "Zero is falsy in TS. If intentional, disable this rule."
     )
 }

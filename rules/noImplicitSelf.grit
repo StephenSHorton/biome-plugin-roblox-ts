@@ -1,0 +1,12 @@
+language js;
+
+// LIMITATION: Biome's plugin system does not visit labeled statement nodes.
+// This rule detects labeled statements that look like Lua-style method calls.
+// This pattern matches in `biome search` but does not fire as a lint plugin.
+
+`$label: $call($args)` where {
+    register_diagnostic(
+        span = $match,
+        message = "Use `.` instead of `:` for method calls. Implicit self is not supported in roblox-ts."
+    )
+}

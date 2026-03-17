@@ -1,8 +1,0 @@
-language js;
-
-`and` where {
-    register_diagnostic(
-        span = $match,
-        message = "Reserved Lua keyword 'and' cannot be used as identifier!"
-    )
-}

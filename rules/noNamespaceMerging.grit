@@ -1,5 +1,8 @@
 language js;
 
+// LIMITATION: Biome's plugin system does not visit namespace declaration nodes.
+// This pattern matches in `biome search` but does not fire as a lint plugin.
+
 `namespace $name { $body }` where {
     register_diagnostic(
         span = $match,

@@ -1,0 +1,17 @@
+language js;
+
+// This rule would require TypeScript type checking to fully implement.
+// The ESLint version checks if .length is accessed on strings/arrays
+// and .size on Map/Set/WeakMap/WeakSet, then suggests .size() method instead.
+// GritQL cannot access TypeScript type information.
+
+// Partial implementation: catches common .length property access patterns.
+// This will have false positives on non-Roblox types but covers the common case.
+
+`$obj.length` where {
+    register_diagnostic(
+        span = $match,
+        severity = "warn",
+        message = "Use the .size() method instead of .length for Roblox compatibility. Note: this rule cannot verify types and may produce false positives."
+    )
+}

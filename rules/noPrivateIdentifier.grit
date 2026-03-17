@@ -1,5 +1,8 @@
 language js;
 
+// LIMITATION: Biome's plugin system does not visit private class member nodes.
+// The generic pattern `#$name` does not fire as a lint plugin.
+
 `#$name` where {
     register_diagnostic(
         span = $match,

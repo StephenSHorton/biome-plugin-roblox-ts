@@ -20,7 +20,13 @@
 		"rules/",
 		"biome.json"
 	],
+	"scripts": {
+		"test": "bun test"
+	},
 	"exports": {
 		"./biome": "./biome.json"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.7"
 	}
 }
