@@ -25,20 +25,15 @@ jobs:
       - name: Extract version from tag
         id: version
         run: |
-          # Remove 'v' prefix from tag (e.g., v1.2.3 -> 1.2.3)
           VERSION=${GITHUB_REF#refs/tags/v}
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Update package.json version
-        run: |
-          # Update package.json version to match the tag
-          npm pkg set version=${{ steps.version.outputs.version }}
-
-      - name: Commit version change
+      - name: Update version and commit
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git checkout main
+          npm pkg set version=${{ steps.version.outputs.version }}
           git add package.json
           git commit -m "chore: update version to ${{ steps.version.outputs.version }}"
           git push origin main
