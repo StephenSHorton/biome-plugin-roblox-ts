@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -37,6 +38,4 @@ jobs:
           git diff --cached --quiet && echo "Version already up to date" || (git commit -m "chore: update version to ${{ steps.version.outputs.version }}" && git push origin main)
 
       - name: Publish to npm
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --provenance --access public
