@@ -86,7 +86,11 @@ The package is published to npm as `biome-plugin-roblox-ts`. The `files` field i
 
 ## Key Limitations
 
-- **Plugin node types**: Only expression-level AST nodes are visited by Biome's plugin system. 8 rules are blocked.
+- **Plugin node types**: Only expression-level AST nodes are visited by Biome's plugin system. 8 rules are blocked. GritQL is the only third-party plugin mechanism — there is no WASM/JS/Rust plugin API for external authors. Native Rust rules (merged into Biome's repo) are the only alternative for full AST access.
 - **No autofix**: GritQL plugins can only report diagnostics, not fix code.
 - **No TypeScript types**: GritQL cannot access type information. 3 rules are placeholders.
 - Rules with `false` in their `where` clause or `// LIMITATION:` comments are intentionally non-functional.
+
+## Future: Native Rust Rules
+
+The 8 rules blocked by plugin node type limitations and the 3 type-dependent rules could potentially be contributed as native Rust rules upstream to the Biome project. This would give them full AST access and type information. This is a separate effort from the GritQL plugin and would involve writing Rust, going through Biome's contribution process, and maintaining rules in their repository.

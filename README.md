@@ -6,7 +6,7 @@ A port of the [eslint-plugin-roblox-ts](https://github.com/roblox-ts/eslint-plug
 
 This plugin enforces TypeScript restrictions, Lua compatibility patterns, and Roblox-specific best practices using [GritQL](https://docs.grit.io/language/overview) rules.
 
-> **Status**: Many rules work today but some are blocked by Biome's plugin system which only visits a limited set of AST node types. Blocked rules are kept in the codebase and will activate as Biome expands plugin support. See [Limitations](#limitations) for details.
+> **v1.0 Stable** — 23 of 34 rules are fully functional, covering all rules possible with Biome's current GritQL plugin system. The remaining 11 rules are blocked by upstream Biome limitations (plugin node type support and lack of TypeScript type access) that affect all GritQL plugins, not just this one. Blocked rules are kept in the codebase and will activate automatically as Biome expands support. See [Limitations](#limitations) for details.
 
 ## Installation
 
@@ -144,9 +144,11 @@ These rules are provided by Biome itself and enabled as warnings:
 
 ## Limitations
 
+GritQL is currently the only way to write custom Biome lint rules. There is no WASM, JS/TS, or Rust plugin API available to third parties — native rules must be merged directly into Biome's codebase. These limitations affect all GritQL plugin authors, not just this project.
+
 ### Biome Plugin Node Type Support (^)
 
-Biome's GritQL plugin system currently only visits a limited set of AST node types (expressions, identifiers, literals, and a few statement types). Patterns that target declarations (enums, namespaces), class members (getters/setters), for-in statements, labeled statements, and private identifiers do not fire as lint diagnostics — even though they match correctly in `biome search`.
+Biome's GritQL plugin system only visits a subset of AST node types (expressions, identifiers, literals, and a few statement types). Patterns that target declarations (enums, namespaces), class members (getters/setters), for-in statements, labeled statements, and private identifiers do not fire as lint diagnostics — even though they match correctly in `biome search`.
 
 **8 rules are blocked by this limitation:**
 `noEnumMerging`, `noGettersOrSetters`, `noSetters`, `noNamespaceMerging`, `noLabels`, `noForIn`, `noImplicitSelf`, `noPrivateIdentifier`
@@ -166,6 +168,10 @@ GritQL does not have access to TypeScript's type checker:
 - **`sizeMethod`** - Cannot verify if `.length` is on a string/array vs other types (may produce false positives)
 
 For full type-aware linting, use the original [eslint-plugin-roblox-ts](https://github.com/roblox-ts/eslint-plugin-roblox-ts) alongside this plugin.
+
+### Path to Full Coverage
+
+The blocked rules could be implemented as native Rust rules contributed upstream to the Biome project, which would have full AST and type access. This is being explored as a future effort.
 
 ## Testing
 
