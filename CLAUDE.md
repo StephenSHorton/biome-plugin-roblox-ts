@@ -32,24 +32,18 @@ language js;
 - GritQL has no autofix support — rules can only report diagnostics
 - GritQL cannot access TypeScript type information — type-dependent rules are placeholders
 
-### Workaround: `if_statement()` node type
+### Use native PascalCase AST node patterns for declarations and statements
 
-Code patterns like `` `if ("")` `` do not fire as plugins, but using the tree-sitter node type name `if_statement($condition, $consequence)` DOES work. Use this pattern with `$condition <: ` matching for if-statement rules.
+Literal-string GritQL patterns (e.g. `` `enum $name { $body }` ``, `` `for ($k in $o)` ``, `` `$label: $stmt` ``) do not fire as plugins for many declaration and statement node types. Use Biome's native PascalCase AST node names instead — these were added in Biome 2.2.6 (#7510) and reliably fire as plugins:
 
-### Biome Plugin Node Type Limitation
+- `JsLabeledStatement()`, `JsForInStatement()`, `JsForOfStatement()`
+- `TsEnumDeclaration()`, `TsModuleDeclaration()` (TS namespaces)
+- `JsGetterClassMember()`, `JsSetterClassMember()`, `JsGetterObjectMember()`, `JsSetterObjectMember()`
+- `JsPrivateClassMemberName()` (matches `#name`)
 
-Biome's plugin system only visits a subset of AST node types. Patterns that resolve to these nodes work:
-- Expressions: binary, unary, typeof, member access, call expressions
-- Literals: null, string, number, regex, identifiers
-- Some statements: if_statement, return_statement, variable_declaration
+Native nodes also accept field metavariables matching the `.ungram` grammar (added in 2.4.10, #9739): `JsLabeledStatement(body = JsExpressionStatement(expression = JsCallExpression()))`.
 
-Patterns for these node types DO NOT fire as plugins (verified via testing):
-- Declarations: enum, namespace, class, function, interface
-- Statements: for-in, for-of, for, while, switch, labeled, with, try
-- Class members: getters, setters, method definitions, private identifiers
-- Type annotations
-
-Rules with `// LIMITATION:` comments in their source are affected. They match in `biome search` but not in `biome lint` plugins. They're kept so they auto-activate when Biome adds support.
+Use `biome search 'YourPattern()' file.ts` to verify a pattern matches before wiring it into a plugin.
 
 ## ESLint Plugin Reference
 
@@ -86,11 +80,5 @@ The package is published to npm as `@rbxts/biome-plugin-roblox-ts`. The `files` 
 
 ## Key Limitations
 
-- **Plugin node types**: Only expression-level AST nodes are visited by Biome's plugin system. 8 rules are blocked. GritQL is the only third-party plugin mechanism — there is no WASM/JS/Rust plugin API for external authors. Native Rust rules (merged into Biome's repo) are the only alternative for full AST access.
-- **No autofix**: GritQL plugins can only report diagnostics, not fix code.
-- **No TypeScript types**: GritQL cannot access type information. 3 rules are placeholders.
-- Rules with `false` in their `where` clause or `// LIMITATION:` comments are intentionally non-functional.
-
-## Future: Native Rust Rules
-
-The 8 rules blocked by plugin node type limitations and the 3 type-dependent rules could potentially be contributed as native Rust rules upstream to the Biome project. This would give them full AST access and type information. This is a separate effort from the GritQL plugin and would involve writing Rust, going through Biome's contribution process, and maintaining rules in their repository.
+- **No autofix**: GritQL plugins can only report diagnostics, not fix code. GritQL is the only third-party plugin mechanism — there is no WASM/JS/Rust plugin API for external authors.
+- **No TypeScript types**: GritQL cannot access type information. 3 rules are placeholders (`noUndeclaredScope`, `misleadingLuatupleChecks`, full `sizeMethod` semantics) and contain `false` in their `where` clause. They could only be implemented as native Rust rules contributed upstream to Biome.

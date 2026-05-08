@@ -5,20 +5,16 @@ import { join } from "path";
 const PROJECT_ROOT = join(import.meta.dir, "..");
 const INVALID_DIR = join(import.meta.dir, "invalid");
 const VALID_DIR = join(import.meta.dir, "valid");
+const BIOME_BIN = join(
+	PROJECT_ROOT,
+	"node_modules",
+	".bin",
+	process.platform === "win32" ? "biome.cmd" : "biome",
+);
 
-// Rules that don't fire due to Biome plugin node type limitations.
-// These patterns match in `biome search` but the plugin system doesn't
-// visit these AST node types. Keep the rules for when Biome adds support.
-const KNOWN_BROKEN_RULES = new Set([
-	"noEnumMerging",
-	"noGettersOrSetters",
-	"noSetters",
-	"noNamespaceMerging",
-	"noLabels",
-	"noForIn",
-	"noImplicitSelf",
-	"noPrivateIdentifier",
-]);
+// Rules that cannot be implemented in GritQL because they require TypeScript
+// type information (which GritQL has no access to). These are kept as placeholders.
+const KNOWN_BROKEN_RULES = new Set<string>([]);
 
 interface Diagnostic {
 	severity: string;
@@ -41,8 +37,7 @@ interface LintResult {
 function lint(filePath: string): Diagnostic[] {
 	const result = Bun.spawnSync(
 		[
-			"npx",
-			"@biomejs/biome",
+			BIOME_BIN,
 			"lint",
 			"--reporter=json",
 			"--max-diagnostics=none",
@@ -59,8 +54,13 @@ function lint(filePath: string): Diagnostic[] {
 	const jsonLine = combined.split("\n").find((l) => l.trim().startsWith("{"));
 	if (!jsonLine) return [];
 
+	// Biome's JSON reporter on Windows emits unescaped backslashes inside
+	// path strings (e.g. "tests\invalid\foo.ts"), which breaks JSON.parse.
+	// Escape any backslash that isn't already a valid JSON escape.
+	const sanitized = jsonLine.replace(/\\(?!["\\/bfnrtu])/g, "\\\\");
+
 	try {
-		const output: LintResult = JSON.parse(jsonLine);
+		const output: LintResult = JSON.parse(sanitized);
 		return output.diagnostics ?? [];
 	} catch {
 		return [];
