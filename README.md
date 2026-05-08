@@ -1,6 +1,6 @@
 ![cover](/cover.png)
 
-# biome-plugin-roblox-ts
+# @rbxts/biome-plugin-roblox-ts
 
 A port of the [eslint-plugin-roblox-ts](https://github.com/roblox-ts/eslint-plugin-roblox-ts) ruleset to [Biome](https://biomejs.dev/). Designed for [roblox-ts](https://roblox-ts.com/) development.
 
@@ -14,13 +14,13 @@ This plugin enforces TypeScript restrictions, Lua compatibility patterns, and Ro
 
 ```bash
 # npm
-npm install --save-dev @biomejs/biome biome-plugin-roblox-ts
+npm install --save-dev @biomejs/biome @rbxts/biome-plugin-roblox-ts
 
 # bun
-bun add -D @biomejs/biome biome-plugin-roblox-ts
+bun add -D @biomejs/biome @rbxts/biome-plugin-roblox-ts
 
 # yarn
-yarn add -D @biomejs/biome biome-plugin-roblox-ts
+yarn add -D @biomejs/biome @rbxts/biome-plugin-roblox-ts
 ```
 
 ### 2. Initialize Biome (if not already done)
@@ -39,7 +39,7 @@ Add the plugin to your `biome.json`:
 
 ```json
 {
-  "extends": ["biome-plugin-roblox-ts/biome"]
+  "extends": ["@rbxts/biome-plugin-roblox-ts/biome"]
 }
 ```
 

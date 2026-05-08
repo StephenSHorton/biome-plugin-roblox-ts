@@ -6,7 +6,7 @@ Biome linter plugin for roblox-ts projects. Port of [eslint-plugin-roblox-ts](ht
 
 ## Architecture
 
-- `biome.json` - Plugin configuration that consumers extend via `biome-plugin-roblox-ts/biome`
+- `biome.json` - Plugin configuration that consumers extend via `@rbxts/biome-plugin-roblox-ts/biome`
 - `rules/*.grit` - Individual GritQL rule files, one per lint rule
 - `tests/` - Bun test suite with invalid/valid fixtures per rule
 - Published as an npm package; consumers add it as a dev dependency and extend the config
@@ -68,8 +68,8 @@ Tests use fixture files in `tests/invalid/` (should trigger diagnostics) and `te
 To test against a real roblox-ts project:
 
 1. Link the plugin locally: `npm link` (from this directory)
-2. In the test project: `npm link biome-plugin-roblox-ts`
-3. Add `"extends": ["biome-plugin-roblox-ts/biome"]` to the test project's `biome.json`
+2. In the test project: `npm link @rbxts/biome-plugin-roblox-ts`
+3. Add `"extends": ["@rbxts/biome-plugin-roblox-ts/biome"]` to the test project's `biome.json`
 4. Run: `npx @biomejs/biome lint .`
 
 The `~/Desktop/roblox-moba` project can be used for integration testing.
@@ -82,7 +82,7 @@ npx @biomejs/biome search '`your_pattern`' ./path/to/file.ts
 
 ## Publishing
 
-The package is published to npm as `biome-plugin-roblox-ts`. The `files` field in `package.json` includes only `rules/` and `biome.json`. Version bumps and releases are handled by the GitHub Actions workflow in `.github/workflows/release.yml`.
+The package is published to npm as `@rbxts/biome-plugin-roblox-ts`. The `files` field in `package.json` includes only `rules/` and `biome.json`. Version bumps and releases are handled by the GitHub Actions workflow in `.github/workflows/release.yml`.
 
 ## Key Limitations
 

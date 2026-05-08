@@ -1,5 +1,5 @@
 {
-	"name": "biome-plugin-roblox-ts",
+	"name": "@rbxts/biome-plugin-roblox-ts",
 	"version": "1.0.0",
 	"description": "Biome GritQL rules for roblox-ts projects",
 	"type": "module",
