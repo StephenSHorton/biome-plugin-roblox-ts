@@ -6,7 +6,7 @@ A port of the [eslint-plugin-roblox-ts](https://github.com/roblox-ts/eslint-plug
 
 This plugin enforces TypeScript restrictions, Lua compatibility patterns, and Roblox-specific best practices using [GritQL](https://docs.grit.io/language/overview) rules.
 
-> **v1.0 Stable** — 23 of 34 rules are fully functional, covering all rules possible with Biome's current GritQL plugin system. The remaining 11 rules are blocked by upstream Biome limitations (plugin node type support and lack of TypeScript type access) that affect all GritQL plugins, not just this one. Blocked rules are kept in the codebase and will activate automatically as Biome expands support. See [Limitations](#limitations) for details.
+> **Pre-1.0** — 23 of 34 rules are fully functional, covering all rules possible with Biome's current GritQL plugin system. The remaining 11 rules are blocked by upstream Biome limitations (plugin node type support and lack of TypeScript type access) that affect all GritQL plugins, not just this one. Blocked rules are kept in the codebase and will activate automatically as Biome expands support. See [Limitations](#limitations) for details.
 
 ## Installation
 
